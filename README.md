@@ -36,7 +36,7 @@ Tecnologie Utilizzate
 Struttura File
 
 ```
-/root
+/Progetto-pokemon
 ├── index.html          # File principale HTML
 ├── app.js              # Logica JavaScript per interazione e gestione dell'app
 ├── style.css           # Stile CSS per l'app
