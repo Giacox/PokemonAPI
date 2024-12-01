@@ -200,7 +200,7 @@ informazioni dettagliate.
 Deployment Finale
 
 L'applicazione è disponibile su Vercel all'URL:
-PokemonAPI.vercel.app.
+pokemon-api.vercel.app.
 Verifica
 che tutte le funzionalità siano operative:
 
