@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokémon!</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="header-image-container">
+        <img src="https://cdn.worldvectorlogo.com/logos/pokemon-23.svg" alt="Pokémon Logo">
+    </div>
+
+    <!-- Barra di ricerca con bottone accanto -->
+    <div class="search-container">
+        <input type="text" id="search-bar" placeholder="Cerca Pokémon per nome, abilità o statistiche"
+            oninput="searchPokemon()">
+        <button onclick="scrollToMyPokemon()" class="scroll-btn">Vai alla lista My Pokémon</button>
+    </div>
+
+    <!-- Elenco dei Pokémon -->
+    <div id="pokemon-list" class="pokemon-container"></div>
+
+    <!-- Lista personale -->
+    <h2>My Pokémon</h2>
+    <div id="my-pokemon-list" class="pokemon-container"></div>
+
+    <!-- Modale per i dettagli del Pokémon -->
+    <div id="pokemon-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div id="modal-details"></div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
