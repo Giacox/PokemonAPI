@@ -1,133 +1,223 @@
 # Documentazione Tecnica per il Progetto Pokémon Web App
 Creare una web app in cui gli utenti possano visualizzare e "catturare" Pokémon, gestire la loro collezione personale (MyPokemon) e ottenere informazioni dettagliate sui Pokémon stessi.
 ----------------------------------------------------------------------------------------------------------------------------
-Sommario
 
-1. Introduzione
-2. Architettura del Progetto
-3. Installazione e Configurazione
-4. Componenti del Progetto
-5. Deployment su Vercel
-6. Note Finali
 
-1. Introduzione
+Introduzione
 
-Questa documentazione fornisce una guida tecnica per lo sviluppo e
-l'esecuzione della web app che permette agli utenti di:
+Questa documentazione fornisce una panoramica tecnica del progetto
+Pokémon Web App, che consente agli utenti di
+visualizzare, catturare e gestire Pokémon utilizzando i dati della
+Pokémon API.
+L'applicazione è stata sviluppata in Visual Studio Code,
+i file sono gestiti in un repository GitHub, e il
+deployment è stato effettuato tramite Vercel.
 
-- Visualizzare e cercare Pokémon
-  	utilizzando la PokémonAPI.
-- "Catturare" Pokémon e
-  	gestire una lista personale (MyPokemon).
-- Visualizzare informazioni dettagliate sui Pokémon.
+---
+
+Architettura del Progetto
+
+
+Struttura dei File
+
+La struttura del progetto è organizzata come segue:
+
+
+```
+/PokemoAPI
+│
+├── index.html   # File HTML principale
+├── style.css    # File CSS per il design
+├── app.js       # File JavaScript per la logica dell'app
+└── README.md    # Documentazione del progetto
+```
 
 Tecnologie Utilizzate
 
-- Frontend: HTML,
-  	CSS, JavaScript
-- Persistenza Dati:localStorage
-- API: Pokémon REST API
-- Ambiente di Sviluppo: Visual Studio Code
-- Deployment: Vercel
+- HTML: Struttura
+  	dell'applicazione.
+- CSS: Stile e
+  	design responsivo.
+- JavaScript:
+  	Logica e interazioni dinamiche.
+- Pokémon API:
+  	Fonte dei dati.
+- LocalStorage:
+  	Persistenza dei dati utente lato client.
+- GitHub:
+  	Versionamento del codice.
+- Vercel: Deployment e hosting del progetto.
+---
 
-2. Architettura del Progetto
+Requisiti Funzionali
+
+1. Visualizzazione dei Pokémon
+	- Lista dei Pokémon recuperata
+	  		tramite la Pokémon API.
+	- Ogni Pokémon è rappresentato da
+	  		una card contenente:
+		- Nome.
+		- Sprite (immagine).
+		- Pulsante Catch
+		  			per catturare il Pokémon.
+2. Cattura dei Pokémon
+	- Un Pokémon può essere aggiunto
+	  		alla collezione personale My Pokémon.
+	- I Pokémon catturati vengono
+	  		salvati in LocalStorage per garantire persistenza.
+3. Visualizzazione dettagliata
+	- Cliccando sull'immagine di un
+	  		Pokémon, vengono mostrati:
+		- Tipo.
+		- Abilità.
+		- Statistiche di base.
+4. Gestione della collezione My Pokémon
+	- Visualizzazione della lista dei
+	  		Pokémon catturati.
+	- Rimozione di Pokémon dalla
+	  		collezione tramite il pulsante Release.
+5. Ricerca Avanzata
+	- Filtro per nome, tipo, abilità o statistiche.
+---
+
+Configurazione dell'Ambiente di Sviluppo
+
+1. Prerequisiti
+	- Installare Visual Studio
+	  		Code.
+	- Creare un account su GitHub
+	  		e Vercel.
+2. Clone del Repository
+	- Clona il progetto dal repository GitHub:
+	- Sostituisci username/repository
+	  		con il nome del repository.
+3. Strumenti Utilizzati
+	- Estensioni consigliate per Visual
+	  		Studio Code:
+		- Live Server:
+		  			Per visualizzare l'app in locale.
+		- Prettier: Per
+		  			la formattazione del codice.
+4. Comandi Locali
+	- Avviare un server locale con Live Server.
+---
+
+Deployment su Vercel
+
+1. Collegamento del Repository
+	- Accedi a Vercel.
+	- Importa il repository GitHub
+	  		cliccando su Import Project.
+	- Configura le impostazioni e
+	  		clicca su Deploy.
+2. Verifica del Deployment
+	- Dopo il deployment, verifica che l'applicazione sia
+	  		accessibile tramite l'URL fornito da Vercel.
+---
+
+Descrizione dei File
 
 
-Struttura File
+index.html
 
-```
-/Progetto-pokemon
-├── index.html          # File principale HTML
-├── app.js              # Logica JavaScript per interazione e gestione dell'app
-├── style.css           # Stile CSS per l'app
-├── README.md           # Documentazione
-```
+Questo file contiene la struttura principale dell'applicazione:
 
-Interazione con la Pokémon API
+- Barra di ricerca con il campo
+  	input e pulsante.
+- Lista dei Pokémon (dinamicamente
+  	popolata tramite app.js).
+- Sezione dedicata ai Pokémon
+  	catturati (My Pokémon).
+- Modale per mostrare i dettagli del Pokémon.
 
-L'app utilizza l'endpoint /pokemon/?offset=0&limit=1302per recuperare l'elenco completo dei Pokémon. Per ogni Pokémon,vengono recuperati i dettagli tramite il campo urlspecifico.
+style.css
 
-Persistenza dei Dati
+Definisce lo stile e il layout dell'applicazione:
 
-La lista MyPokemon è salvata nel localStoragedel browser, garantendo che i dati siano persistenti tra i refreshdella pagina.
+- Classi dinamiche per i tipi di
+  	Pokémon.
+- Stile personalizzato per i
+  	pulsanti in base al tipo.
+- Design responsivo e supporto per interazioni (hover, focus).
+
+app.js
+
+Gestisce la logica dell'applicazione:
+
+- Fetch dei dati dalla Pokémon API.
+- Creazione dinamica delle card per
+  	Pokémon e My Pokémon.
+- Persistenza dei dati tramite
+  	LocalStorage.
+- Interazione con il DOM per le funzionalità di ricerca e
+  	modale.
+---
+
+Funzionamento Dettagliato
+
+
+1. Fetch dei Pokémon
+
+Viene effettuata una richiesta a
+https://pokeapi.co/api/v2/pokemon/?offset=0&limit=1302.
+I
+dettagli dei Pokémon sono poi memorizzati in allPokemonData
+per permettere funzionalità come la ricerca e l'accesso rapido.
+
+
+2. Creazione delle Card
+
+Ogni card di Pokémon è generata dinamicamente con le seguenti
+proprietà:
+
+- Nome e immagine.
+- Classe CSS dinamica basata sul
+  	tipo.
+- Pulsante Catch o Release.
+
+3. Persistenza con LocalStorage
+
+I Pokémon catturati sono salvati in LocalStorage. Durante
+l'inizializzazione (displayMyPokemon()),
+i dati vengono caricati per popolare la lista My Pokémon.
+
+
+4. Ricerca
+
+La funzione searchPokemon() filtra i
+Pokémon in base ai criteri inseriti (nome, tipo, statistiche,
+abilità).
+
+
+5. Visualizzazione dei Dettagli
+
+Quando l'utente clicca sull'immagine di un Pokémon, la funzione
+showDetails() mostra un modale con le
+informazioni dettagliate.
 
 ---
 
-3. Installazione e Configurazione
+Deployment Finale
 
+L'applicazione è disponibile su Vercel all'URL:
+PokemonAPI.vercel.app.
+Verifica
+che tutte le funzionalità siano operative:
 
-Prerequisiti
-
-- Browser moderno per eseguire l'app
-- Editor di testo come Visual Studio Code
-
-Configurazione del Progetto
-
-1. Clonare il repository del progetto:
-2. Aprire il progetto con Visual Studio Code.
-3. Testare l'app in locale:
-	- Aprire index.htmldirettamente nel browser.
-	- Utilizzare l'estensione Live Server di VSCode per l'anteprima live.
+- Fetch dei Pokémon.
+- Catch/Release.
+- Ricerca.
+- Dettagli.
 ---
 
-4. Componenti del Progetto
+Miglioramenti Futuri
 
-
-4.1 index.html
-
-- Struttura principale dell'app.
-- Include:
-	- Barra di ricerca per filtrare iPokémon.
-	- Due contenitori per lavisualizzazione dei Pokémon disponibili e catturati.
-	- Modale per i dettagli del Pokémon.
-
-4.2 app.js
-
-Gestisce:
-- Fetch dati dall'API:Funzione fetchPokemon() per ottenerel'elenco completo dei Pokémon.
-- Cattura Pokémon:Funzione catchPokemon() per aggiungereun Pokémon alla lista MyPokemon, salvandolo nel localStorage.
-- Gestione MyPokemon:Funzione displayMyPokemon() permostrare la lista e releasePokemon()per rimuovere un Pokémon.
-- Ricerca Pokémon:Funzione searchPokemon() per filtrare iPokémon in base a nome, abilità, mosse e statistiche.
-- Modale Dettagli: Funzioni showDetails(),openModal(), e closeModal()per mostrare informazioni dettagliate sui Pokémon.
-
-4.3 style.css
-
-- Stile visivo delle card e pulsanti.
-- Utilizzo di classi dinamiche basate sul tipo del Pokémon (card-fire, button-grass, ecc.).
-- Modale per i dettagli dei Pokémon.
----
-
-5. Deployment su Vercel
-
-
-Prerequisiti
-
-- Creare un account su Vercel.
-
-Procedura di Deployment
-
-
-Aggiornamenti Successivi
-
----
-
-6. Note Finali
-
-
-Test e Debug
-
-- Verificare che l'app funzioni correttamente nei principali browser (Chrome, Firefox, Edge).
-- Testare la persistenza dei dati e il caricamento delle immagini dei Pokémon.
-
-Possibili Estensioni
-
-- Autenticazione Utenti:
-  	Utilizzare una piattaforma per creare profili personalizzati.
-- Leaderboard Pokémon:
-  	Aggiungere una sezione per mostrare i Pokémon catturati da altri
-  	utenti.
-- Grafica Avanzata: Integrare librerie come TailwindCSS per migliorare l'interfaccia.
-Grazie per aver utilizzato questa documentazione!
+- Paginazione per la lista dei
+  	Pokémon. 
+  	
+- Autenticazione utente per
+  	personalizzare la collezione.
+- Supporto per temi scuri/chiari.
 
 
 
